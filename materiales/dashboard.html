@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <a href="index.html" class="app-logo"><img src="/movie-logo.svg" class="logo-img" alt="logo" /><span>Aplicacion de Peliculas</span></a>
+            <button class="logout-btn" onclick="window.location.href='index.html'" title="Cerrar sesión">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </header>
+    <div class="container">
+
+        <div class="search-box">
+            <label for="latitude">Latitud:</label>
+            <input type="number" id="latitude" placeholder="-34.9011" step="any">
+            <label for="longitude">Longitud:</label>
+            <input type="number" id="longitude" placeholder="-56.1645" step="any">
+            <button>Buscar</button>
+            <button><i class="fas fa-spinner fa-spin"></i></button>
+
+        </div>
+
+        <div class="chart-container">
+            <canvas id="temperatureChart" class="chart"></canvas>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Sample data for the temperature chart
+        const ctx = document.getElementById('temperatureChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Día 1', 'Día 2', 'Día 3', 'Día 4', 'Día 5'],
+                datasets: [
+                    {
+                        label: 'Temperatura Máxima',
+                        data: [24, 22, 18, 14, 20],
+                        backgroundColor: '#e1b12c',
+                        borderColor: '#fbc531',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Temperatura Mínima',
+                        data: [19, 16, 10, 9, 15],
+                        backgroundColor: '#273c75',
+                        borderColor: '#40739e',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Temperatura (°C)'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Temperaturas Máximas y Mínimas',
+                        font: {
+                            size: 16,
+                            family: 'Nunito'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
